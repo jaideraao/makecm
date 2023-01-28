@@ -1,23 +1,23 @@
 #
 #  common.mk
-#  commonmkcm
+#  mkcm
 #
 #  Copyright (C) 2023 Jaider Angarita.
 #  All rights reserved.
 #
-#  This file is part of the commonmkcm project.
+#  This file is part of the mkcm project.
 #
-#  commonmkcm is free software: you can redistribute it and/or modify it under
+#  mkcm is free software: you can redistribute it and/or modify it under
 #  the terms of the GNU General Public License as published by the Free Software
 #  Foundation, either version 3 of the License, or (at your option) any later
 #  version.
 #
-#  commonmkcm is distributed in the hope that it will be useful, but WITHOUT ANY
+#  mkcm is distributed in the hope that it will be useful, but WITHOUT ANY
 #  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
 #  A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
 #  You should have received a copy of the GNU General Public License along with
-#  commonmkcm. If not, see <https://www.gnu.org/licenses/>.
+#  mkcm. If not, see <https://www.gnu.org/licenses/>.
 #
 
 app			?= app
