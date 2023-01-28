@@ -2,7 +2,7 @@
 #  common.mk
 #  commonmkcm
 #
-#  Copyright (C) 2017 Jaider Angarita.
+#  Copyright (C) 2023 Jaider Angarita.
 #  All rights reserved.
 #
 #  This file is part of the commonmkcm project.
