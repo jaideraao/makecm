@@ -59,7 +59,7 @@ ldflags		+= $(mcpuflags) $(ldlibs) -T$(ldscript) \
 all: $(elf)
 
 clean:
-	-@echo 'CLEAN'
+	@echo 'CLEAN'
 	-$(rm) $(objects) $(depends) $(elf) $(map)
 
 rebuild: clean all
