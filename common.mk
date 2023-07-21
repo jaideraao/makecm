@@ -32,25 +32,25 @@ incpath		:= $(addprefix -I ,$(incdirs))
 mcpuflags	:= -mthumb -mcpu=$(mcpu)
 
 cflags		:= $(mcpuflags) -D$(target) \
-			-std=$(cstd) $(incpath) -O$(cdebug) \
-			-pipe \
-			-ffunction-sections -fdata-sections \
-			-Wall -Wextra -Werror
+			   -std=$(cstd) $(incpath) -O$(cdebug) \
+			   -pipe \
+			   -ffunction-sections -fdata-sections \
+			   -Wall -Wextra -Werror
 
 ifeq ($(cdebug),g)
-cflags		+= -g3 -DDEBUG
+	cflags		+= -g3 -DDEBUG
 else
-cflags		+= -g0 -flto
+	cflags		+= -g0 -flto
 endif
 
 ldflags		+= $(mcpuflags) $(ldlibs) -T$(ldscript) \
-			-pipe \
-			--specs=nano.specs \
-			-Wl,-Map=$(map) \
-			-Wl,--start-group \
-			-Wl,--end-group \
-			-Wl,--gc-sections \
-			-Wl,--print-memory-usage
+			   -pipe \
+			   --specs=nano.specs \
+			   -Wl,-Map=$(map) \
+			   -Wl,--start-group \
+			   -Wl,--end-group \
+			   -Wl,--gc-sections \
+			   -Wl,--print-memory-usage
 
 .SILENT:
 
