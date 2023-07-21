@@ -38,9 +38,9 @@ cflags		:= $(mcpuflags) -D$(target) \
 			   -Wall -Wextra -Werror
 
 ifeq ($(cdebug),g)
-	cflags		+= -g3 -DDEBUG
+	cflags	+= -g3 -DDEBUG
 else
-	cflags		+= -g0 -flto
+	cflags	+= -g0 -flto
 endif
 
 ldflags		+= $(mcpuflags) $(ldlibs) -T$(ldscript) \
