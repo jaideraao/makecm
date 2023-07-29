@@ -34,7 +34,7 @@ mcpuflags	:= -mthumb -mcpu=$(mcpu)
 cflags		:= $(mcpuflags) -D$(target) \
 			   -std=$(cstd) $(incpath) -O$(cdebug) \
 			   -pipe \
-			   -ffunction-sections -fdata-sections \
+			   -ffunction-sections -fdata-sections -ffreestanding \
 			   -Wall -Wextra -Werror
 
 ifeq ($(cdebug),g)
