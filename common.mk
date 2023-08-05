@@ -31,7 +31,7 @@ incpath		:= $(addprefix -I ,$(incdirs))
 
 mcpuflags	:= -mthumb -mcpu=$(mcpu)
 
-cflags		:= $(mcpuflags) -D$(target) \
+cflags		:= $(mcpuflags) -D$(target) -D$(defines) \
 			   -std=$(cstd) $(incpath) -O$(cdebug) \
 			   -pipe \
 			   -ffunction-sections -fdata-sections -ffreestanding \
