@@ -27,7 +27,7 @@ vpath %.c $(srcdir)
 objects		:= $(addprefix $(build),$(subst .c,.o,$(sources)))
 depends		:= $(addprefix $(build),$(subst .c,.d,$(sources)))
 
-incpath		:= $(addprefix -I ,$(incdirs))
+incpath		:= $(addprefix -I,$(incdirs))
 
 mcpuflags	:= -mthumb -mcpu=$(mcpu)
 
@@ -52,7 +52,7 @@ ldflags		+= $(mcpuflags) $(ldlibs) -T$(ldscript) \
 			   -Wl,--gc-sections \
 			   -Wl,--print-memory-usage
 
-.SILENT:
+# .SILENT:
 
 .PHONY: all clean rebuild
 
