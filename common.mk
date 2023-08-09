@@ -31,11 +31,16 @@ incpath		:= $(addprefix -I,$(incdirs))
 
 mcpuflags	:= -mthumb -mcpu=$(mcpu)
 
-cflags		:= $(mcpuflags) -D$(target) -D$(defines) \
-			   -std=$(cstd) $(incpath) -O$(cdebug) \
-			   -pipe \
-			   -ffunction-sections -fdata-sections -ffreestanding \
-			   -Wall -Wextra -Werror
+flags		:= -pipe -Wall -Wextra -Werror \
+			   $(mcpuflags) -D$(target) -D$(defines) \
+			   $(incpath) -O$(cdebug) \
+			   -ffunction-sections -fdata-sections \
+			   -ffreestanding \
+
+cflags		:= -std=$(cstd) $(flags)
+
+cxxflags	:= -std=$(cxxflags) $(flags) \
+			   -fno-exceptions -fno-rtti
 
 ifeq ($(cdebug),g)
 	cflags	+= -g3 -DDEBUG
@@ -72,3 +77,8 @@ $(build)%.o: %.c
 	@$(cpp) -MM -MG -MP -MF $(subst .o,.d,$@) -D$(target) $(incpath) $<
 	@echo 'CC	$(notdir $<)'
 	$(cc) $(cflags) -c $< -o $@
+
+$(build)%.o: %.cpp
+	@$(cpp) -MM -MG -MP -MF $(subst .o,.d,$@) -D$(target) $(incpath) $<
+	@echo 'CC	$(notdir $<)'
+	$(cxx) $(cxxflags) -c $< -o $@
