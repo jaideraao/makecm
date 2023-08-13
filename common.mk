@@ -39,7 +39,7 @@ flags		:= -pipe -Wall -Wextra -Werror \
 
 cflags		:= -std=$(cstd) $(flags)
 
-cxxflags	:= -std=$(cxxflags) $(flags) \
+cxxflags	:= -std=$(cxxstd) $(flags) \
 			   -fno-exceptions -fno-rtti
 
 ifeq ($(cdebug),g)
