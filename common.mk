@@ -29,7 +29,7 @@ depends		:= $(addprefix $(build),$(subst .c,.d,$(sources)))
 
 incpath		:= $(addprefix -I,$(incdirs))
 
-mcpuflags	:= -mthumb -mcpu=$(mcpu)
+mcpuflags	:= -mthumb -mcpu=$(mcpu) -mfloat-abi=$(mfloat)
 
 flags		:= -pipe -Wall -Wextra -Werror \
 			   $(mcpuflags) -D$(target) -D$(defines) \
