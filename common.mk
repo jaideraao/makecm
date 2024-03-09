@@ -8,21 +8,14 @@
 #  This file is part of the makecm project.
 #
 
-app			?= app
-bindir		?= bin/
-build		?= build/
-
-elf			:= $(bindir)$(app).elf
-map			:= $(bindir)$(app).map
-
 cross		:= arm-none-eabi-
 cc			:= $(cross)gcc
 cpp			:= $(cross)gcc -E
 cxx			:= $(cross)g++
 ld			:= $(cross)gcc
-rm			:= rm -f
+rm			:= rm -rf
 
-vpath %.c $(srcdir)
+vpath %.c $(srcdirs)
 
 objects		:= $(addprefix $(build),$(subst .c,.o,$(sources)))
 depends		:= $(addprefix $(build),$(subst .c,.d,$(sources)))
@@ -57,28 +50,31 @@ ldflags		+= $(mcpuflags) $(ldlibs) -T$(ldscript) \
 			   -Wl,--gc-sections \
 			   -Wl,--print-memory-usage
 
-# .SILENT:
+.SILENT:
 
 .PHONY: all clean rebuild
 
-all: $(elf)
+all: $(outdirs) $(elf)
 
 clean:
 	@echo 'CLEAN'
-	-$(rm) $(objects) $(depends) $(elf) $(map)
+	-@$(rm) $(outdirs)
 
 rebuild: clean all
+
+$(outdirs):
+	@mkdir $@
 
 $(elf): $(objects)
 	@echo 'LD	$(notdir $@')
 	$(ld) $(ldflags) $^ -o $@
 
 $(build)%.o: %.c
-	@$(cpp) -MM -MG -MP -MF $(subst .o,.d,$@) -D$(target) $(incpath) $<
+	$(cpp) -MM -MG -MP -MF $(subst .o,.d,$@) -D$(target) $(incpath) $<
 	@echo 'CC	$(notdir $<)'
 	$(cc) $(cflags) -c $< -o $@
 
 $(build)%.o: %.cpp
-	@$(cpp) -MM -MG -MP -MF $(subst .o,.d,$@) -D$(target) $(incpath) $<
+	$(cpp) -MM -MG -MP -MF $(subst .o,.d,$@) -D$(target) $(incpath) $<
 	@echo 'CC	$(notdir $<)'
 	$(cxx) $(cxxflags) -c $< -o $@
