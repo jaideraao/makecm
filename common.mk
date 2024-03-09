@@ -50,7 +50,7 @@ ldflags		+= $(mcpuflags) $(ldlibs) -T$(ldscript) \
 			   -Wl,--gc-sections \
 			   -Wl,--print-memory-usage
 
-# .SILENT:
+.SILENT:
 
 .PHONY: all clean rebuild
 
